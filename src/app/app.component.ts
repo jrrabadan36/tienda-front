@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+//Para la api
 import { PostServiceService } from '../app/post-service.service';
 import { Post } from '../app/modelos/Post';
+// Para el formulario
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +14,15 @@ export class AppComponent {
   posts: Post[] = [];
   title = 'tienda-front';
 
-  constructor(private postService: PostServiceService) { }
+  todoForm: FormGroup;
+
+  constructor(private postService: PostServiceService, private formBuilder: FormBuilder) { 
+    this.todoForm = this.formBuilder.group({
+      title: ['', Validators.required],
+      description: ['', Validators.required],
+      done: false
+    });
+  }
 
   ngOnInit() {
     this.postService.getPost()
@@ -22,6 +33,11 @@ export class AppComponent {
         },
         error => {
           console.log(error);
-        });
+        }
+    );
+  }
+
+  saveTodo() {
+    console.log(this.todoForm.value);
   }
 }
