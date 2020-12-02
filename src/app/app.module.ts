@@ -9,16 +9,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostServiceService } from '../app/post-service.service';
 // Para el formulario
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormularioComponent } from './formulario/formulario.component';
+
+// Para el ruteo
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   providers: [PostServiceService],
   bootstrap: [AppComponent]
